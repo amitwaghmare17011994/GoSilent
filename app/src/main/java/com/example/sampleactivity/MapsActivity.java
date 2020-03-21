@@ -92,6 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
+    
     @Override
     public void onMapClick(LatLng latLng) {
         Marker marker = mMap.addMarker(new MarkerOptions().position(latLng));
