@@ -8,11 +8,12 @@ import android.os.Build;
 
 public class MobileAudioManager {
     Context c;
-    MobileAudioManager(Context c)
-    {
-    this.c=c;
+
+    MobileAudioManager(Context c) {
+        this.c = c;
 
     }
+
     public void setPermissions() {
         NotificationManager notificationManager =
                 (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);

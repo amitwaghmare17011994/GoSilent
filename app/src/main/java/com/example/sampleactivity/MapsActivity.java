@@ -1,23 +1,17 @@
 package com.example.sampleactivity;
 
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -33,7 +27,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ArrayList<LocationItem> locationItems;
     ArrayList<Marker> markers;
     LocationManager locationManager;
-    LocationHandler locationHandler ;
+    LocationHandler locationHandler;
 
     Boolean mLocationPermissionGranted = false;
     private GoogleMap mMap;
@@ -59,8 +53,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     public void setLocationPermision() {
-        locationHandler=new LocationHandler(this);
-        locationHandler.setLocationMarkerAtCurrentLocation(mMap,this);
+        locationHandler = new LocationHandler(this);
+        locationHandler.setLocationMarkerAtCurrentLocation(mMap, this);
     }
 
     @Override
@@ -70,9 +64,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mLocationPermissionGranted = false;
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                 if (grantResults.length > 0
+                if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                     locationHandler.setLocationMarkerAtCurrentLocation(mMap,this);
+                    locationHandler.setLocationMarkerAtCurrentLocation(mMap, this);
                 }
             }
         }
@@ -92,7 +86,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    
     @Override
     public void onMapClick(LatLng latLng) {
         Marker marker = mMap.addMarker(new MarkerOptions().position(latLng));
@@ -116,7 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onLocationRemove(int position) {
 
-         Marker marker = markers.get(position);
+        Marker marker = markers.get(position);
         markers.remove(position);
         locationItems.remove(position);
         marker.remove();

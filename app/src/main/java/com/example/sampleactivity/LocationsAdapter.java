@@ -17,17 +17,17 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.MyVi
     LocationActions locationActions;
 
 
-    public LocationsAdapter(ArrayList<LocationItem> locationItems, Context c,LocationActions locationActions) {
+    public LocationsAdapter(ArrayList<LocationItem> locationItems, Context c, LocationActions locationActions) {
         this.locationItems = locationItems;
-        this.locationActions=locationActions;
-        context=c;
+        this.locationActions = locationActions;
+        context = c;
     }
 
     @Override
     public LocationsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                             int viewType) {
 
-        View v = (View) LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.location_list_item, parent, false);
 
         MyViewHolder vh = new MyViewHolder(v);
@@ -37,8 +37,8 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.MyVi
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        TextView locationName= (TextView) holder.view.findViewById(R.id.locationItem);
-        Button locationItemRemove=(Button) holder.view.findViewById(R.id.locationItemRemove);
+        TextView locationName = holder.view.findViewById(R.id.locationItem);
+        Button locationItemRemove = holder.view.findViewById(R.id.locationItemRemove);
         locationItemRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +57,7 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         public View view;
+
         public MyViewHolder(View v) {
             super(v);
             view = v;

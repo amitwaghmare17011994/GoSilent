@@ -1,19 +1,11 @@
 package com.example.sampleactivity;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.NotificationManager;
-import android.content.Context;
-import android.content.Intent;
-import android.media.AudioManager;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
-import java.util.Map;
-
-public class StartActivity extends AppCompatActivity   {
+public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +17,11 @@ public class StartActivity extends AppCompatActivity   {
     }
 
     public void setPermissions() {
-        MobileAudioManager audioManager=new MobileAudioManager(this);
+        MobileAudioManager audioManager = new MobileAudioManager(this);
     }
-    public  void launchMainActivity()
-    {
-        Intent intent=new Intent(this, MapsActivity.class);
+
+    public void launchMainActivity() {
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 

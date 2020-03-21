@@ -22,7 +22,7 @@ public class LocationItem {
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
             if (addresses != null && addresses.size() > 0) {
                 String address = addresses.get(0).getAddressLine(0);
-                this.locationName=address;
+                this.locationName = address;
             }
 
         } catch (IOException e) {

@@ -1,6 +1,5 @@
 package com.example.sampleactivity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -20,13 +19,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class LocationHandler {
     LocationActions locationActions;
 
-    LocationHandler(LocationActions locationActions)
-    {
-        this.locationActions=locationActions;
+    LocationHandler(LocationActions locationActions) {
+        this.locationActions = locationActions;
     }
 
-    public void setLocationMarkerAtCurrentLocation(GoogleMap mMap, Activity activity)
-    {
+    public void setLocationMarkerAtCurrentLocation(GoogleMap mMap, Activity activity) {
         try {
 
             if (ContextCompat.checkSelfPermission(activity,
@@ -40,15 +37,14 @@ public class LocationHandler {
                 if (currentLocation != null) {
                     LatLng current = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
 
-                    Marker marker=mMap.addMarker(new MarkerOptions().position(current).title("Marker Label").snippet("Marker Description"));
+                    Marker marker = mMap.addMarker(new MarkerOptions().position(current).title("Marker Label").snippet("Marker Description"));
 
                     CameraPosition cameraPosition = new CameraPosition.Builder().target(current).zoom(14).build();
 
                     mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
                     this.locationActions.onLocationSetOnMap((marker));
-                }
-                else {
+                } else {
                     ActivityCompat.requestPermissions(activity,
                             new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                             1);
@@ -56,8 +52,8 @@ public class LocationHandler {
 
             }
 
-            }catch(Exception e){
-            }
+        } catch (Exception e) {
         }
+    }
 
 }
