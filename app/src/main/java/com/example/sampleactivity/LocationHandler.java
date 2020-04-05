@@ -44,15 +44,17 @@ public class LocationHandler {
                     mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
                     this.locationActions.onLocationSetOnMap((marker));
-                } else {
-                    ActivityCompat.requestPermissions(activity,
-                            new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                            1);
                 }
 
             }
+            else {
+                ActivityCompat.requestPermissions(activity,
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        1);
+            }
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
