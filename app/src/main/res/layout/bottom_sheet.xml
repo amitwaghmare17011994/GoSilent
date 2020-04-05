@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:layout_height="600dp"
+    android:background="@drawable/bottomsheet"
     android:orientation="vertical"
     android:padding="15dp"
 
@@ -17,42 +16,45 @@
     >
 
 
-
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-
-            <TextView
-                android:id="@+id/bottom_sheet_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Selected Locations"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:drawableTop="@mipmap/up"
-                  />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/locationList"
+    <LinearLayout
         android:layout_width="match_parent"
-         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="30dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        />
+        <TextView
+            android:id="@+id/bottom_sheet_text"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:drawableTop="@mipmap/up"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/apply_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Apply"
-        android:layout_gravity="bottom"
-        android:background="#000000"
-        android:textColor="@android:color/white"
-        />
-</LinearLayout>
+        <TextView
+            android:id="@+id/locationLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selected Locations"
+            android:textAlignment="center"
+            android:textSize="20sp"
+
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/locationList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+
+            />
+
+        <Button
+            android:id="@+id/apply_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#000000"
+            android:text="Apply"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 </LinearLayout>

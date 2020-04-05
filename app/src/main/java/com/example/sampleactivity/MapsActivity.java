@@ -1,6 +1,8 @@
 package com.example.sampleactivity;
 
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -38,19 +43,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationHandler locationHandler;
     BottomSheetBehavior bottomSheetBehavior;
     Boolean mLocationPermissionGranted = false;
+    TextView locationLabel;
     private GoogleMap mMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
+
+
+
+
+
         mapFragment.getMapAsync(this);
         locationList = findViewById(R.id.locationList);
         apply_button = findViewById(R.id.apply_button);
-
+        locationLabel=(TextView) findViewById(R.id.locationLabel);
         markers = new ArrayList<Marker>();
         locationList.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -62,6 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LinearLayout llBottomSheet = findViewById(R.id.bottom_sheet);
         BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
+
 
 
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -128,7 +144,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapClick(LatLng latLng) {
-        Marker marker = mMap.addMarker(new MarkerOptions().position(latLng));
+
+        int height = 80;
+        int width = 80;
+        BitmapDrawable bitmapdraw = (BitmapDrawable)getResources().getDrawable(R.mipmap.marker);
+        Bitmap b = bitmapdraw.getBitmap();
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+
+        Marker marker = mMap.addMarker(new MarkerOptions().position(latLng)
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker))
+
+        );
+
         this.setMarkerOnMap(marker);
     }
 
@@ -136,10 +163,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void resetList() {
         if (this.locationItems.size() == 0) {
             apply_button.setVisibility(View.INVISIBLE);
+            locationLabel.setText("Please Select Locations");
         } else {
-            if (apply_button.getVisibility() == View.INVISIBLE)
+            if (apply_button.getVisibility() == View.INVISIBLE) {
                 apply_button.setVisibility(View.VISIBLE);
+            }
+            locationLabel.setText("Selected Locations");
+
+
         }
+
         mAdapter = new LocationsAdapter(this.locationItems, getApplicationContext(), this);
 
         locationList.setAdapter(mAdapter);

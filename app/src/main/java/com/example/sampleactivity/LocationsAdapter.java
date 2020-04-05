@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,10 +27,8 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.MyVi
     @Override
     public LocationsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                             int viewType) {
-
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.location_list_item, parent, false);
-
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
@@ -38,7 +37,7 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.MyVi
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         TextView locationName = holder.view.findViewById(R.id.locationItem);
-        Button locationItemRemove = holder.view.findViewById(R.id.locationItemRemove);
+        ImageView locationItemRemove = holder.view.findViewById(R.id.locationItemRemove);
         locationItemRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
